@@ -67,7 +67,7 @@ spec:
     - name: build-image
       params:
         - name: IMAGE
-          value: $(params.IMAGE):$(params.git-revision)
+          value: $(params.IMAGE):latest
         - name: DOCKERFILE
           value: $(params.DOCKERFILE)
       runAfter:
