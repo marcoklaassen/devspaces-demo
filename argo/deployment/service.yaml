@@ -5,7 +5,7 @@ metadata:
   namespace: devtools-demo
 spec:
   selector:
-    name: devtools-demo
+    app: devtools-demo
   ports:
     - protocol: TCP
       port: 80
