@@ -34,7 +34,7 @@ spec:
             value: $(tt.params.git-commit-message)
           - name: IMAGE
             value: >-
-              image-registry.openshift-image-registry.svc:5000/$(context.pipelineRun.namespace)/$(tt.params.git-repo-name)
+              image-registry.openshift-image-registry.svc:5000/$(context.pipelineRun.namespace)/devtools-demo
         pipelineRef:
           name: quarkus-native-pipeline
         serviceAccountName: pipeline
