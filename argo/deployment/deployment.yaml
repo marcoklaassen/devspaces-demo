@@ -1,33 +1,27 @@
-apiVersion: apps.openshift.io/v1
-kind: DeploymentConfig
+apiVersion: apps/v1
+kind: Deployment
 metadata:
-  name: devtools-demo
   namespace: devtools-demo
+  name: 'devtools-demo'
 spec:
-  replicas: 1
   selector:
-    name: devtools-demo
+    matchLabels:
+      app: devtools-demo
+  replicas: 3
   template:
     metadata:
       labels:
-        name: devtools-demo
+        app: devtools-demo
     spec:
       containers:
-        - image: devtools-demo
-          name: devtools-demo
+        - name: container
+          image: >-
+            image-registry.openshift-image-registry.svc:5000/devtools-demo/devtools-demo:latest
           ports:
             - containerPort: 8080
               protocol: TCP
-      restartPolicy: Always
-  triggers:
-    - type: ConfigChange
-    - imageChangeParams:
-        automatic: true
-        containerNames:
-          - devtools-demo
-        from:
-          kind: ImageStreamTag
-          name: devtools-demo:latest
-      type: ImageChange
   strategy:
-    type: Rolling
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
