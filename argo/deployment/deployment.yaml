@@ -2,6 +2,7 @@ apiVersion: apps.openshift.io/v1
 kind: DeploymentConfig
 metadata:
   name: devtools-demo
+  namespace: devtools-demo
 spec:
   replicas: 1
   selector:

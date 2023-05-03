@@ -2,6 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: devtools-demo
+  namespace: devtools-demo
 spec:
   selector:
     name: devtools-demo
