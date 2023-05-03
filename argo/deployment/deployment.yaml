@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: DeploymentConfig
+metadata:
+  name: devtools-demo
+spec:
+  replicas: 1
+  selector:
+    name: devtools-demo
+  template:
+    metadata:
+      labels:
+        name: devtools-demo
+    spec:
+      containers:
+        - image: devtools-demo
+          name: devtools-demo
+          ports:
+            - containerPort: 8080
+              protocol: TCP
+      restartPolicy: Always
+  triggers:
+    - type: ConfigChange
+    - imageChangeParams:
+        automatic: true
+        containerNames:
+          - devtools-demo
+        from:
+          kind: ImageStreamTag
+          name: devtools-demo:latest
+      type: ImageChange
+  strategy:
+    type: Rolling

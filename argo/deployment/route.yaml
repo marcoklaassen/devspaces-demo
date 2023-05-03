@@ -1,0 +1,14 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: devtools-demo
+  namespace: devtools-demo
+  annotations:
+    haproxy.router.openshift.io/hsts_header: max-age=31536000;includeSubDomains;preload
+spec:
+  host: app-devtools-demo.apps.ocp4.klaassen.click
+  to:
+    kind: Service
+    name: devtools-demo
+  tls:
+    termination: "edge"
