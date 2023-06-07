@@ -1,4 +1,4 @@
-FROM quay.io/devfile/universal-developer-image:ubi8-e925aaf
+FROM image-registry.openshift-image-registry.svc:5000/marcoklaassen-devspaces/universal-developer-image:ubi8-e925aaf
 
 RUN curl -fsSL "https://get.sdkman.io" | bash \
     && bash -c ". /home/user/.sdkman/bin/sdkman-init.sh \

@@ -1,0 +1,43 @@
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  name: quarkus-developer-image-build
+  namespace: marcoklaassen-devspaces
+spec:
+  tasks:
+    - name: fetch-repository
+      params:
+        - name: url
+          value: 'https://github.com/marcoklaassen/devspaces-demo'
+        - name: revision
+          value: main
+        - name: subdirectory
+          value: ''
+        - name: deleteExisting
+          value: 'true'
+      taskRef:
+        kind: ClusterTask
+        name: git-clone
+      workspaces:
+        - name: output
+          workspace: workspace
+    - name: build
+      params:
+        - name: IMAGE
+          value: 'quay.io/mklaasse/quarkus-developer-images:latest'
+        - name: TLSVERIFY
+          value: 'false'
+        - name: DOCKERFILE
+          value: ./developer-image/Containerfile
+        - name: IMAGE_PUSH_SECRET_NAME
+          value: mklaasse-gitops-pull-secret
+      runAfter:
+        - fetch-repository
+      taskRef:
+        kind: ClusterTask
+        name: buildah
+      workspaces:
+        - name: source
+          workspace: workspace
+  workspaces:
+    - name: workspace
