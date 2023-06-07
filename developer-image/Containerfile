@@ -1,0 +1,3 @@
+FROM quay.io/devfile/universal-developer-image:ubi8-e925aaf
+
+RUN sdk install quarkus
