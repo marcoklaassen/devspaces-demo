@@ -59,7 +59,7 @@ commands:
       label: "Start Development mode (Hot reload + debug)"
       component: tools
       workingDir: ${PROJECT_SOURCE}
-      commandLine: "mvn compile quarkus:dev"
+      commandLine: "quarkus dev" # instead of "mvn compile quarkus:dev"
       group:
         kind: run
         isDefault: true
