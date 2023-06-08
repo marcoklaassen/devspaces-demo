@@ -78,3 +78,14 @@ spec:
       workspaces:
         - name: source
           workspace: shared-workspace
+    - name: rollout-new-version
+      taskRef:
+        kind: ClusterTask
+        name: openshift-client
+      params:
+        - name: SCRIPT
+          value: oc rollout restart deployment devtools-demo
+        - name: VERSION
+          value: latest
+      runAfter:
+        - build-image
