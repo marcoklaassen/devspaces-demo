@@ -4,7 +4,7 @@ metadata:
 components:
   - name: tools
     container:
-      image: https://quay.io/repository/mklaasse/quarkus-developer-images
+      image: quay.io/repository/mklaasse/quarkus-developer-images
       env:
         - name: QUARKUS_HTTP_HOST
           value: 0.0.0.0
