@@ -4,7 +4,7 @@ metadata:
 components:
   - name: tools
     container:
-      image: quay.io/devfile/universal-developer-image:ubi8-e925aaf
+      image: https://quay.io/repository/mklaasse/quarkus-developer-images
       env:
         - name: QUARKUS_HTTP_HOST
           value: 0.0.0.0
@@ -59,7 +59,7 @@ commands:
       label: "Start Development mode (Hot reload + debug)"
       component: tools
       workingDir: ${PROJECT_SOURCE}
-      commandLine: "mvn compile quarkus:dev"
+      commandLine: "quarkus dev"
       group:
         kind: run
         isDefault: true
