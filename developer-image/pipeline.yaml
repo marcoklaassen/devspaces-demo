@@ -29,8 +29,6 @@ spec:
           value: 'false'
         - name: DOCKERFILE
           value: ./developer-image/Containerfile
-        - name: IMAGE_PUSH_SECRET_NAME
-          value: mklaasse-gitops-pull-secret
       runAfter:
         - fetch-repository
       taskRef:
